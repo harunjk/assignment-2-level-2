@@ -61,7 +61,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-const updateMovie = async (req: Request, res: Response) => {
+const updateMProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     const result = await ProductService.UpdateProduct(productId);
@@ -79,7 +79,7 @@ const updateMovie = async (req: Request, res: Response) => {
   }
 };
 
-const DeleteSingleMovie = async (req: Request, res: Response) => {
+const DeleteSingleProduct = async (req: Request, res: Response) => {
   try {
     const { productId } = req.params;
     const result = await ProductService.DeleteSingleProduct(productId);
@@ -97,10 +97,29 @@ const DeleteSingleMovie = async (req: Request, res: Response) => {
   }
 };
 
+const SearchData = async (req: Request, res: Response) => {
+  try {
+    const searchTerm = req.query.searchTerm as string;
+    const result = await ProductService.saerchProduct(searchTerm);
+    res.json({
+      success: true,
+      message: "Saerch result successfully!",
+      data: result,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: "Search is wrong",
+      error: err,
+    });
+  }
+};
+
 export const ProductControllat = {
   createProduct,
   getAllProduct,
   getSingleProduct,
-  updateMovie,
-  DeleteSingleMovie,
+  updateMProduct,
+  DeleteSingleProduct,
+  SearchData,
 };

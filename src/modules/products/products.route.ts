@@ -7,5 +7,6 @@ router.get("/", ProductControllat.getAllProduct);
 router.get("/:productId", ProductControllat.getSingleProduct);
 router.put("/:productId", ProductControllat.updateMProduct);
 router.delete("/:productId", ProductControllat.DeleteSingleProduct);
+router.get("/", ProductControllat.SearchData);
 
 export const ProductRouter = router;

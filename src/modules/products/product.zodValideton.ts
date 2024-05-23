@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const variantSchema = z.object({
-  type: z.string().min(1, "Type is required"),
+  type: z.string().min(1, "Type is required "),
   value: z.string().min(1, "Value is required"),
 });
 

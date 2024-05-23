@@ -6,7 +6,7 @@ const app = express();
 // Parser
 app.use(express.json());
 
-// THIS IS PRODUCT ROUTE
+// THIS IS PRODUCT  ROUTE
 app.use("/api/products", ProductRouter);
 app.get("/api/products", ProductRouter);
 

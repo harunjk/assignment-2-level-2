@@ -31,13 +31,7 @@ const DeleteSingleProduct = async (_id: string) => {
   return result;
 };
 
-const saerchProduct = async (searData: string) => {
-  const regex = new RegExp(searData, "i");
-  const result = await Products.find({
-    $or: [{ name: { $regex: regex } }],
-  });
-  return result;
-};
+const saerchProduct = async (searData: string) => {};
 
 export const ProductService = {
   createProductSr,

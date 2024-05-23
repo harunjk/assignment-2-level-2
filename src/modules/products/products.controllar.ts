@@ -97,7 +97,23 @@ const DeleteSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-const SearchData = async (req: Request, res: Response) => {};
+const SearchData = async (req: Request, res: Response) => {
+  try {
+    const searchTerm = req.query.searchTerm as string;
+    const result = await ProductService.saerchProduct(searchTerm);
+    res.json({
+      success: true,
+      message: "Saerch result successfully!",
+      data: result,
+    });
+  } catch (err) {
+    res.json({
+      success: false,
+      message: "Search is wrong",
+      error: err,
+    });
+  }
+};
 
 export const ProductControllat = {
   createProduct,

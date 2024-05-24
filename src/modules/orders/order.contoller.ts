@@ -25,14 +25,23 @@ const createOrder = async (req: Request, res: Response) => {
 };
 
 const getAllOrders = async (req: Request, res: Response) => {
+  const searcTerm = req.query.email as string;
   try {
-    const result = await OrderService.getAllOrders();
+    const result = await OrderService.getAllOrders(searcTerm);
 
-    res.json({
-      success: true,
-      message: "Orders fetched successfully!",
-      data: result,
-    });
+    if (searcTerm && result) {
+      res.status(200).json({
+        success: true,
+        message: `Order matching search term '${searcTerm}' fetched successfully! `,
+        data: result,
+      });
+    } else {
+      res.json({
+        success: true,
+        message: "Order fetched successfully!",
+        data: result,
+      });
+    }
   } catch (erro) {
     res.json({
       success: false,

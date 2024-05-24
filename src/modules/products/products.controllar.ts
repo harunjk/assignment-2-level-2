@@ -25,14 +25,23 @@ const createProduct = async (req: Request, res: Response) => {
 };
 
 const getAllProduct = async (req: Request, res: Response) => {
+  const searcTerm = req.query.searchTerm as string;
   try {
-    const result = await ProductService.getAllProductSr();
+    const result = await ProductService.getAllProductSr(searcTerm);
 
-    res.json({
-      success: true,
-      message: "Products fetched successfully!",
-      data: result,
-    });
+    if (searcTerm && result) {
+      res.status(200).json({
+        success: true,
+        message: `Products matching search term '${searcTerm}' fetched successfully! `,
+        data: result,
+      });
+    } else {
+      res.json({
+        success: true,
+        message: "Products fetched successfully!",
+        data: result,
+      });
+    }
   } catch (erro) {
     res.json({
       success: false,
@@ -97,29 +106,10 @@ const DeleteSingleProduct = async (req: Request, res: Response) => {
   }
 };
 
-const SearchData = async (req: Request, res: Response) => {
-  try {
-    const searchTerm = req.query.searchTerm as string;
-    const result = await ProductService.saerchProduct(searchTerm);
-    res.json({
-      success: true,
-      message: "Saerch result successfully!",
-      data: result,
-    });
-  } catch (err) {
-    res.json({
-      success: false,
-      message: "Search is wrong",
-      error: err,
-    });
-  }
-};
-
 export const ProductControllat = {
   createProduct,
   getAllProduct,
   getSingleProduct,
   updateMProduct,
   DeleteSingleProduct,
-  SearchData,
 };

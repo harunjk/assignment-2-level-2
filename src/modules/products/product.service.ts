@@ -6,9 +6,14 @@ const createProductSr = async (proData: TProduct) => {
   return result;
 };
 
-const getAllProductSr = async () => {
-  const result = await Products.find();
-  return result;
+const getAllProductSr = async (searchname?: string) => {
+  if (searchname) {
+    const result = await Products.find({ name: RegExp(searchname, "i") });
+    return result;
+  } else {
+    const result = await Products.find();
+    return result;
+  }
 };
 
 const getSingleProduct = async (_id: string) => {
@@ -31,19 +36,10 @@ const DeleteSingleProduct = async (_id: string) => {
   return result;
 };
 
-const saerchProduct = async (searData: string) => {
-  const regex = new RegExp(searData, "i");
-  const result = await Products.find({
-    $or: [{ name: { $regex: regex } }],
-  });
-  return result;
-};
-
 export const ProductService = {
   createProductSr,
   getAllProductSr,
   getSingleProduct,
   UpdateProduct,
   DeleteSingleProduct,
-  saerchProduct,
 };

@@ -1,0 +1,5 @@
+# 1, First Clone my repositories :-git clone https://github.com/harunjk/assignment-2-level-2.git
+# 2, Go inside my folder:- cd assignment-2-level-2
+# 3, Install dependencies:- npm i
+# 4, if needed build project then :- npm run build
+# 5, and finally run my project :- npm start

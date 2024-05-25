@@ -32,7 +32,7 @@ const getAllProduct = async (req: Request, res: Response) => {
     if (searcTerm && result) {
       res.status(200).json({
         success: true,
-        message: `Products matching search term '${searcTerm}' fetched successfully! `,
+        message: `Products matching search term ${searcTerm} fetched successfully!`,
         data: result,
       });
     } else {

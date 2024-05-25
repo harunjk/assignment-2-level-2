@@ -32,7 +32,7 @@ const getAllOrders = async (req: Request, res: Response) => {
     if (searcTerm && result) {
       res.status(200).json({
         success: true,
-        message: `Order matching search term '${searcTerm}' fetched successfully! `,
+        message: `Orders fetched successfully for user email!`,
         data: result,
       });
     } else {
